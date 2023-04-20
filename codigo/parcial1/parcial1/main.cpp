@@ -4,6 +4,7 @@ using namespace std;
 
 void diasSemana();
 void semana();
+void escriibirarchivo();
 
 int main()
 {
@@ -11,7 +12,7 @@ int main()
     bool df=0;
     char fila;
     int puesto;
-    char array[15]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O'};
+    char array[24]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O'};
     char* nombredeldia[7]={"  Lunes     ","martes    ","miercoles ","jeves     ","viernes  ","sabado    ","domingo   " };
     int fila_num = 0,ocup;
 
@@ -26,8 +27,8 @@ int main()
 
 
     cout<<endl;
-    cout<<"+ indica asiento reservado"<<endl;
-    cout<<"- indica asiento disponible"<<endl;
+
+    cout<<"- indica horario disponible"<<endl;
 
 
     do {
@@ -57,12 +58,13 @@ int main()
 
 
 
-//Ingresamos la fila y puesto que queremos preguntar
+//Ingresamos la dia y hora
    bool roc;
-   cout<<"Para reservar 1"<<endl;cout<<"Para cancelar 0"<<endl;cin>>roc;
+   //escriibirarchivo();//prueba
+   cout<<"agregar curso (1)"<<endl;cout<<"Para cancelar 0"<<endl;cin>>roc;
    if(roc==1){
-   cout<<"Ingrese la hora de asiento 1-24 : "<<endl;cin>>fila;
-   cout<<"ingrese el puesto en la fila(numeros 1-7): "<<endl;cin>>puesto;
+   cout<<"extraer hora del archivo"<<endl;cin>>fila;
+   cout<<"extrar dia del archivo "<<endl;cin>>puesto;
 
    for(int k=0;k<24;k++){
         if(array[k]==fila){
@@ -71,54 +73,7 @@ int main()
     }ocup=A[fila_num][puesto-1];//marcar como ocupado
 
 //Ahora para canceelar reserva:
-         int d;
-         cout<<"Esta disponible, desea confirmar reserva?(si:1/no:0): ";cin>>d;
-         if(d==1){
-       A[fila_num][puesto-1]='+';
-       cout<<"El puesto se reservo con exito"<<endl;
-       for(int k =0;k<=21;k++){
-       cout<<"-";}
 
-       for(int i=0;i<24;i++){
-           cout<<endl;
-           for(int j=0;j<7;j++){
-             cout<<"|"<<A[i][j]<<" ";}
-           cout<<"|";}
-           cout<<endl;
-           for(int k =0;k<=21;k++){
-           cout<<"-";}
-           cout<<endl;
-
-   }else{cout<<"El puesto no fue reservado."<<endl;}
-       cout<<"Desea hacer otra reserva o cancelacion?(si:1/no:0): "<<endl;
-        cout<<"Ingrese 0 para salir ";cin>>df;}
-   else{
-       cout<<"Ingrese la hora (letras 1-24): "<<endl;cin>>fila;
-       cout<<"ingrese el puesto en la fila(numeros 1-20): "<<endl;cin>>puesto;
-       for(int k=0;k<15;k++){
-            if(array[k]==fila){
-                fila_num=k;
-            }
-        }ocup=A[fila_num][puesto-1];
-
-       int d;
-       cout<<"Desea confirmar cancelacion?(si:1/no:0): ";cin>>d;
-       if(d==1){
-     A[fila_num][puesto-1]='-';
-     cout<<endl<<"El puesto se libro con exito."<<endl;
-     for(int k =0;k<=60;k++){
-     cout<<"-";}
-
-     for(int i=0;i<15;i++){
-         cout<<endl;
-         for(int j=0;j<20;j++){
-           cout<<"|"<<A[i][j]<<" ";}
-         cout<<"|";}
-         cout<<endl;
-         for(int k =0;k<=60;k++){
-         cout<<"-";}
-         cout<<endl;
-   }cout<<"Desea hacer otra reserva o cancelacion?(si:1/no:0): "<<endl;
     cout<<"Ingrese 0 para salir ";cin>>df;
     }
    }while(df==1);
@@ -126,6 +81,34 @@ int main()
 
     return 0;
 }
+
+void escriibirarchivo(ofstream &archivo ){
+    char* nombre;
+    int hora;
+    int dia;
+
+    archivo.open("horario.txt", ios::out |ios::app);
+    cout<<"curso"<< endl;
+    cin>>nombre;
+
+    cout<<"hora 0-23"<< endl;
+    cin>>hora;
+
+    cout<<"dia 1-7"<< endl;
+    cin>>dia;
+
+    archivo<<nombre<<""<<hora<<""<<dia<<endl;
+    archivo.close();
+
+
+
+
+
+}
+
+
+
+
 //void semana ( ){
 //    for(int dia =1 ;dia  <=7; dia++){
 
