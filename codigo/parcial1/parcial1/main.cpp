@@ -7,21 +7,122 @@ void semana();
 
 int main()
 {
-    cout << "hola mundo ";
+    char A[24][7];//hora- dia
+    bool df=0;
+    char fila;
+    int puesto;
+    char array[15]={'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O'};
+    char* nombredeldia[7]={"  Lunes     ","martes    ","miercoles ","jeves     ","viernes  ","sabado    ","domingo   " };
+    int fila_num = 0,ocup;
 
-       semana();
-//    char* data;
-//    ifstream archivoConHorario;
-//    archivoConHorario.open("C:/Users/keyner/Desktop/horario.txt");
+    //inicializo en horas disponibles
+    for(int i=0;i<=24;i++){
+        for(int j =0;j<=7;j++){
 
-//    archivoConHorario>>data;
-//    for(int i = 1; i <= 10000; i++)
-//     {
-//     archivoConHorario>>data;
-//     cout << data << endl;
-//     }
-//    cout<<data;
-//    archivoConHorario.close();
+            A[i][j]='-';
+       }
+    }
+    //_____________
+
+
+    cout<<endl;
+    cout<<"+ indica asiento reservado"<<endl;
+    cout<<"- indica asiento disponible"<<endl;
+
+
+    do {
+
+
+
+//___imprimo la matriz
+
+    for(int k =0;k<=6;k++){
+
+
+    cout<< nombredeldia[k];}
+
+    for(int i=0;i<24;i++){
+        cout<<endl;
+
+
+        for(int j=0;j<7;j++){
+
+          cout<<"|"<<A[i][j]<<"        ";}
+        cout<<"|";}
+        cout<<endl;
+        for(int k =0;k<=21;k++){
+        cout<<"-";}
+        cout<<endl;
+
+
+
+
+//Ingresamos la fila y puesto que queremos preguntar
+   bool roc;
+   cout<<"Para reservar 1"<<endl;cout<<"Para cancelar 0"<<endl;cin>>roc;
+   if(roc==1){
+   cout<<"Ingrese la hora de asiento 1-24 : "<<endl;cin>>fila;
+   cout<<"ingrese el puesto en la fila(numeros 1-7): "<<endl;cin>>puesto;
+
+   for(int k=0;k<24;k++){
+        if(array[k]==fila){
+            fila_num=k;
+        }
+    }ocup=A[fila_num][puesto-1];//marcar como ocupado
+
+//Ahora para canceelar reserva:
+         int d;
+         cout<<"Esta disponible, desea confirmar reserva?(si:1/no:0): ";cin>>d;
+         if(d==1){
+       A[fila_num][puesto-1]='+';
+       cout<<"El puesto se reservo con exito"<<endl;
+       for(int k =0;k<=21;k++){
+       cout<<"-";}
+
+       for(int i=0;i<24;i++){
+           cout<<endl;
+           for(int j=0;j<7;j++){
+             cout<<"|"<<A[i][j]<<" ";}
+           cout<<"|";}
+           cout<<endl;
+           for(int k =0;k<=21;k++){
+           cout<<"-";}
+           cout<<endl;
+
+   }else{cout<<"El puesto no fue reservado."<<endl;}
+       cout<<"Desea hacer otra reserva o cancelacion?(si:1/no:0): "<<endl;
+        cout<<"Ingrese 0 para salir ";cin>>df;}
+   else{
+       cout<<"Ingrese la hora (letras 1-24): "<<endl;cin>>fila;
+       cout<<"ingrese el puesto en la fila(numeros 1-20): "<<endl;cin>>puesto;
+       for(int k=0;k<15;k++){
+            if(array[k]==fila){
+                fila_num=k;
+            }
+        }ocup=A[fila_num][puesto-1];
+
+       int d;
+       cout<<"Desea confirmar cancelacion?(si:1/no:0): ";cin>>d;
+       if(d==1){
+     A[fila_num][puesto-1]='-';
+     cout<<endl<<"El puesto se libro con exito."<<endl;
+     for(int k =0;k<=60;k++){
+     cout<<"-";}
+
+     for(int i=0;i<15;i++){
+         cout<<endl;
+         for(int j=0;j<20;j++){
+           cout<<"|"<<A[i][j]<<" ";}
+         cout<<"|";}
+         cout<<endl;
+         for(int k =0;k<=60;k++){
+         cout<<"-";}
+         cout<<endl;
+   }cout<<"Desea hacer otra reserva o cancelacion?(si:1/no:0): "<<endl;
+    cout<<"Ingrese 0 para salir ";cin>>df;
+    }
+   }while(df==1);
+
 
     return 0;
 }
